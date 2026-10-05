@@ -21,7 +21,10 @@ createRoot(document.getElementById('root')).render(
       <AuthContextProvider>
         <BrowserRouter>
           <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/login" element={<LoginPage />} />
             <Route path="signup" element={<SignupPage />} />
+            <Route path="*" element={<NotFoundPage />} />
           </Routes>
         </BrowserRouter>
       </AuthContextProvider>
