@@ -11,6 +11,7 @@ import { toast } from 'sonner'
 
 import { useEditTransactionForm } from '@/forms/hooks/transaction'
 
+import DeleteTransactionButton from './delete-transaction-button'
 import { Button } from './ui/button'
 import { DatePicker } from './ui/date-picker'
 import {
@@ -177,6 +178,10 @@ const EditTransactionButton = ({ transaction }) => {
                 Salvar
               </Button>
             </SheetFooter>
+            <DeleteTransactionButton
+              transactionId={transaction.id}
+              onDeleted={() => setSheetIsOpen(false)}
+            />
           </form>
         </Form>
       </SheetContent>

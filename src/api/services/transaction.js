@@ -1,6 +1,7 @@
 import queryString from 'query-string'
 
 import { protectedApi } from '@/lib/axios'
+import { graphqlRequest } from '@/lib/graphql'
 
 export const TransactionService = {
   create: async (input) => {
@@ -25,5 +26,19 @@ export const TransactionService = {
       type: input.type,
     })
     return response.data
+  },
+  delete: async (id) => {
+    const data = await graphqlRequest({
+      query: `
+        mutation DeleteTransaction($id: ID!) {
+          deleteTransaction(id: $id) {
+            id
+          }
+        }
+      `,
+      variables: { id },
+      authenticated: true,
+    })
+    return data.deleteTransaction
   },
 }
